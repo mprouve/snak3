@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  padding: 0;
+  width: 100%;
+  background-color: #fff;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+html {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+#__root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}

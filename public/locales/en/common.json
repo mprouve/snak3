@@ -1,0 +1,13 @@
+{
+  "common.project.name": "Snak3",
+  "common.error.message.1": "Something wen't wrong. Please refresh your browser or try again.",
+  "common.page.error.title": "Something Went Wrong",
+  "common.page.error.description": "We apologize, something wen't wrong. Please refresh your browser, or return home and try again.",
+  "common.page.error.action": "Return to Home",
+  "common.term.play": "Play",
+  "common.term.restart": "Restart",
+  "common.term.quit": "Quit",
+  "common.term.score": "Score",
+  "common.term.highscore": "Highscore",
+  "common.term.or": "Or"
+}

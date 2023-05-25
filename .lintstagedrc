@@ -1,0 +1,6 @@
+{
+  "*.{ts,tsx}": [
+    "./node_modules/.bin/prettier --write",
+    "./node_modules/.bin/eslint --report-unused-disable-directives"
+  ]
+}

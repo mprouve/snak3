@@ -1,0 +1,113 @@
+@charset "UTF-8";
+@import 'App.normalize';
+@import 'App.animation';
+
+$delays: (
+  1: 0.5,
+  2: 1,
+  3: 1.5,
+  4: 2,
+  5: 2.5,
+  6: 3,
+  7: 3.5,
+  8: 4,
+);
+
+html {
+  body {
+    font-family: 'Barlow';
+    font-size: 62.5%; /* Will make 1em = 10px */
+    letter-spacing: 0.5px;
+
+    @each $num, $secs in $delays {
+      .delay-#{$num} {
+        animation-delay: #{$secs}s;
+      }
+    }
+
+    *:focus {
+      outline: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .white {
+      color: #fff;
+    }
+
+    .black {
+      color: #000;
+    }
+
+    .water {
+      color: #55d1f5;
+    }
+
+    .fire {
+      color: #ff2400;
+    }
+
+    .light {
+      color: #f5d954;
+    }
+
+    .dark {
+      color: #771ec9;
+    }
+
+    .earth {
+      color: #1ec993;
+    }
+
+    .text-uppercase {
+      text-transform: uppercase;
+    }
+
+    .pointer {
+      cursor: pointer;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    p {
+      margin: 0;
+    }
+
+    .img-fluid {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .center-section {
+      display: flex;
+      justify-content: center;
+    }
+
+    .inview {
+      opacity: 0;
+
+      &.visible {
+        opacity: 1;
+      }
+
+      .animated {
+        opacity: 0;
+        -webkit-animation-duration: 0.6s;
+        animation-duration: 0.6s;
+
+        &.slow {
+          -webkit-animation-duration: 0.8s;
+          animation-duration: 0.8s;
+        }
+      }
+
+      &.fadeInUp {
+        .animated {
+          animation-name: fadeInUp;
+        }
+      }
+    }
+  }
+}

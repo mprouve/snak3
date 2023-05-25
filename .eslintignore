@@ -1,0 +1,7 @@
+.github
+/build
+/builds
+/node_modules
+/public
+**/*.js
+**/*.jsx
