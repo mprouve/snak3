@@ -30,16 +30,17 @@ const TileContainer = styled('div')<TileContainerProps>`
 
 interface TileProps {
   value: number;
+  isHead: boolean;
 }
 
 const Tile = styled('div')<TileProps>`
-  background-color: ${({ value }) => getTileColor(value).colorPrimary};
+  background-color: ${({ value, isHead }) => getTileColor(value, isHead).colorPrimary};
   display: block;
   width: 80%;
   aspect-ratio: 1;
-  /* border: 2px solid ${({ value }) => getTileColor(value).colorPrimary}; */
   border-radius: 0.2rem;
   box-sizing: border-box;
+  box-shadow: ${({ value, isHead }) => (value > 0 ? `0 0 3px 3px ${isHead ? '#ff550055' : '#ff99ff55'}` : 'none')};
   position: absolute;
   top: 50%;
   left: 50%;

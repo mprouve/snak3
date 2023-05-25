@@ -23,7 +23,12 @@ export const useGameLoop = () => {
     setHighScore,
     gameOver,
     setGameOver,
+    setVictory,
   } = useGameContext();
+
+  const handleVictory = useCallback(() => {
+    setVictory(true);
+  }, [setVictory]);
 
   const handleGameOver = useCallback(() => {
     setGameOver(true);
@@ -57,6 +62,8 @@ export const useGameLoop = () => {
 
       // We will move the snake head
       const newHeadState = [headState[0] + drow, headState[1] + dcol];
+      const isOnFood = newHeadState[0] === foodState[0] && newHeadState[1] === foodState[1];
+      let newFoodState = [...foodState];
 
       // We will check if the snake head is out of bounds
       if (newHeadState[0] < 0 || newHeadState[0] >= gridSize || newHeadState[1] < 0 || newHeadState[1] >= gridSize) {
@@ -75,33 +82,45 @@ export const useGameLoop = () => {
       // If the snake head is not on food, we will loop through all tiles and decreases all tile values by 1
       // If they contain a body element.
       // If the tile is on food, we will increase the score and generate a new food tile
-      if (newHeadState[0] === foodState[0] && newHeadState[1] === foodState[1]) {
+      if (isOnFood) {
         logMain.debug('Snake head on food');
 
         newGameState[newHeadState[0]][newHeadState[1]] = newHeadValue;
         setScore(score + 1);
         setHighScore(Math.max(score + 1, highScore));
-        setFoodState(placeFood(newGameState));
-      } else {
-        // Set the new head state in the new game state
-        newGameState[newHeadState[0]][newHeadState[1]] = newHeadValue;
+        newFoodState = [...placeFood(newGameState)];
+      }
 
-        // We will loop through all tiles and decreases all tile values by 1 if they contain a body element
-        for (let i = 0; i < newGameState.length; i += 1) {
-          const row = newGameState[i];
+      // If we did not find an empty space, we will handle victory
+      if (newFoodState[0] === -1 && newFoodState[1] === -1) {
+        handleVictory();
+        handleGameOver();
+        return;
+      }
 
-          for (let j = 0; j < row.length; j += 1) {
-            if (newGameState[i][j] > 0) {
+      // Set the new head state in the new game state
+      newGameState[newHeadState[0]][newHeadState[1]] = newHeadValue;
+
+      // We will loop through all tiles and decreases all tile values by 1 if they contain a body element
+      for (let i = 0; i < newGameState.length; i += 1) {
+        const row = newGameState[i];
+
+        for (let j = 0; j < row.length; j += 1) {
+          const tileValue = newGameState[i][j];
+
+          if (tileValue > 0) {
+            if (!isOnFood) {
               newGameState[i][j] -= 1;
             }
           }
         }
       }
 
-      setHeadState(newHeadState);
-      setGameState(newGameState);
-
       logMain.debug('Moving snake head');
+
+      setHeadState(newHeadState);
+      setFoodState(newFoodState);
+      setGameState(newGameState);
     }
   }, [
     foodState,
@@ -110,6 +129,7 @@ export const useGameLoop = () => {
     gameState,
     gridSize,
     handleGameOver,
+    handleVictory,
     headState,
     highScore,
     movementDir,

@@ -1,4 +1,4 @@
-export const getTileColor = (value: number) => {
+export const getTileColor = (value: number, isHead: boolean) => {
   if (value === -1) {
     return {
       colorPrimary: '#00000000',
@@ -13,7 +13,7 @@ export const getTileColor = (value: number) => {
 
   if (value >= 1) {
     return {
-      colorPrimary: '#ff5500',
+      colorPrimary: !isHead ? '#ff99ff' : '#ff5500',
     };
   }
 

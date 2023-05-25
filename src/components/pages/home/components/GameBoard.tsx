@@ -16,11 +16,14 @@ const GameBoard: FC = () => {
     gridSize,
     gameState,
     setGameState,
+    headState,
     setHeadState,
     setFoodState,
     movementDir,
     setMovementDir,
     setScore,
+    victory,
+    setVictory,
     gameOver,
     setGameOver,
   } = useGameContext();
@@ -38,6 +41,7 @@ const GameBoard: FC = () => {
     setFoodState(newGameState.foodState);
     setMovementDir(null);
     setScore(0);
+    setVictory(false);
     setGameOver(false);
   };
 
@@ -50,6 +54,7 @@ const GameBoard: FC = () => {
     setFoodState(newGameState.foodState);
     setMovementDir(null);
     setScore(0);
+    setVictory(false);
     setGameOver(false);
   };
 
@@ -62,7 +67,7 @@ const GameBoard: FC = () => {
               {col === -1 ? (
                 <Styled.TileFood src={FoodIcon} width="160" height="160" alt="Food Icon" title="Food Icon" />
               ) : (
-                <Styled.Tile value={col} />
+                <Styled.Tile value={col} isHead={headState[0] === i && headState[1] === j} />
               )}
             </Styled.TileContainer>
           );
@@ -77,10 +82,20 @@ const GameBoard: FC = () => {
         </Styled.OverlayContainer>
       )}
 
-      {gameOver && (
+      {gameOver && !victory && (
         <Styled.OverlayContainer>
           <Styled.OverlayContent>
             <Styled.OverlayTitle>{tGame('game.game.over')}</Styled.OverlayTitle>
+            <Styled.RestartButton onClick={handleRestart}>{tCommon('common.term.restart')}</Styled.RestartButton>
+            <Styled.QuitButton onClick={handleQuit}>{tCommon('common.term.quit')}</Styled.QuitButton>
+          </Styled.OverlayContent>
+        </Styled.OverlayContainer>
+      )}
+
+      {gameOver && victory && (
+        <Styled.OverlayContainer>
+          <Styled.OverlayContent>
+            <Styled.OverlayTitle>{tGame('game.victory')}</Styled.OverlayTitle>
             <Styled.RestartButton onClick={handleRestart}>{tCommon('common.term.restart')}</Styled.RestartButton>
             <Styled.QuitButton onClick={handleQuit}>{tCommon('common.term.quit')}</Styled.QuitButton>
           </Styled.OverlayContent>

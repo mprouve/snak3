@@ -25,6 +25,8 @@ export interface IGameContext {
   setScore: (score: number) => void;
   highScore: number;
   setHighScore: (highScore: number) => void;
+  victory: boolean;
+  setVictory: (victory: boolean) => void;
   gameOver: boolean;
   setGameOver: (gameOver: boolean) => void;
 }
@@ -48,6 +50,8 @@ export const initialContext: IGameContext = {
   setScore: () => undefined,
   highScore: 0,
   setHighScore: () => undefined,
+  victory: false,
+  setVictory: () => undefined,
   gameOver: false,
   setGameOver: () => undefined,
 };

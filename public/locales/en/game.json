@@ -1,5 +1,6 @@
 {
     "game.begin": "Move to begin!",
     "game.instructions": "Move with",
-    "game.game.over": "Game Over!"
+    "game.game.over": "Game Over",
+    "game.victory": "Victory!"
 }

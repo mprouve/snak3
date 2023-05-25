@@ -16,6 +16,7 @@ const GameProvider: FC<GameProviderProps> = ({ children }) => {
   const [movementDir, setMovementDir] = useState<IGameContext['movementDir']>(initialContext.movementDir);
   const [score, setScore] = useState<IGameContext['score']>(initialContext.score);
   const [highScore, setHighScore] = useState<IGameContext['highScore']>(initialContext.highScore);
+  const [victory, setVictory] = useState<IGameContext['victory']>(initialContext.victory);
   const [gameOver, setGameOver] = useState<IGameContext['gameOver']>(initialContext.gameOver);
 
   // logMain.debug({ gameState, headState, foodState, movementDir, score, highScore, gameOver });
@@ -40,6 +41,8 @@ const GameProvider: FC<GameProviderProps> = ({ children }) => {
       setScore,
       highScore,
       setHighScore,
+      victory,
+      setVictory,
       gameOver,
       setGameOver,
     }),
@@ -62,6 +65,8 @@ const GameProvider: FC<GameProviderProps> = ({ children }) => {
       setScore,
       highScore,
       setHighScore,
+      victory,
+      setVictory,
       gameOver,
       setGameOver,
     ],
