@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 // import { logMain } from 'src/modules/logger/logger';
 
 interface Options {
@@ -9,7 +9,7 @@ interface Options {
 }
 
 export const useAppNavigateExternal = () => {
-  const routerLocation = useLocation();
+  // const routerLocation = useLocation();
 
   const handleNavigateExternal = useMemo(
     () => (to: string, options: Options) => {
@@ -27,7 +27,7 @@ export const useAppNavigateExternal = () => {
         window.location.href = to;
       }
     },
-    [routerLocation.pathname],
+    [],
   );
 
   return handleNavigateExternal;

@@ -22,6 +22,10 @@
 
     You will need the respective environment variables for each environment you'd like to run or else the app wont start. Please ask a developer of this project for the respective `.env` files.
 
+    in your root directory, please create the following files: `.env`, `.env.local`, `.env.dev`, `.env.staging`, `.env.qa`, and `.env.prod`
+
+    For each file please add the current line: `REACT_APP_ENV=<environment>`, where `<environment>` matches the environment name for each of the files listed right above.
+
 ## **SCRIPTS**
 
 - ### **Starting the App**

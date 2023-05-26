@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMemo } from 'react';
-import { useLocation, useNavigate, NavigateFunction, To, RelativeRoutingType } from 'react-router-dom';
+import { useNavigate, NavigateFunction, To, RelativeRoutingType } from 'react-router-dom';
 
 interface Options {
   navigateOpts?: {
@@ -11,7 +12,7 @@ interface Options {
 }
 
 export const useAppNavigateInternal = () => {
-  const routerLocation = useLocation();
+  // const routerLocation = useLocation();
   const navigate: NavigateFunction = useNavigate();
 
   const handleNavigateInternal = useMemo(
@@ -41,7 +42,7 @@ export const useAppNavigateInternal = () => {
         navigate(to);
       }
     },
-    [routerLocation.pathname, navigate],
+    [navigate],
   );
 
   return handleNavigateInternal;
